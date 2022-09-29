@@ -1,4 +1,10 @@
-url: ~
+url: https://bbieri.github.io/HohgantR/
 template:
   bootstrap: 5
-
+  bootswatch: simplex
+reference:
+- title: "Data Visualisation functions"
+  desc: >
+    Ensemble of functions allowing for the faster production of graphs.
+  contents:
+  - themebernie
