@@ -10,6 +10,13 @@
 
 The package is a personal toolbox of functions that have no place in other packages I have contributed to or developed.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://bbieri.github.io/HohgantR/}
+}
+
+}
 \author{
 \strong{Maintainer}: Bernhard Bieri \email{bernhard.bieri1@gmail.com} (\href{https://orcid.org/0000-0001-5943-9059}{ORCID})
 
