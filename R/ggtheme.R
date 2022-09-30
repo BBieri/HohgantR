@@ -27,6 +27,8 @@
 
 themebernie <- function(){
   hrbrthemes::theme_modern_rc() +
-    ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#222831"),
-                   plot.background = ggplot2::element_rect(fill = "#222831"))
+    ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#222831",
+                                                            color = NULL),
+                   plot.background = ggplot2::element_rect(fill = "#222831",
+                                                           color = NULL))
 }
