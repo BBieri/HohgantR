@@ -11,46 +11,60 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(badger) # For badges below.
+library(extrafont) # To load Windows fonts on R
+extrafont::loadfonts(device = "win")
 ```
 
 # HohgantR <img src="man/figures/logo.png" align="right" height="138" />
 
 <!-- badges: start -->
+[![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com)
+`r badger::badge_devel("BBieri/HohgantR", "blue")`
+`r badger::badge_lifecycle("experimental")`
 <!-- badges: end -->
 
 The goal of HohgantR is to serve as a toolbox filled with all the miscellaneous
-functions that might be useful one day.
+functions that might be useful one day, or not...
 
 ## Installation
 
-You can install the development version of HohgantR from [GitHub](https://github.com/) with:
+You can install the latest version of HohgantR from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("BBieri/HohgantR")
 ```
 
-## Example
+A release on CRAN is not planned as the package is intended to serve as a
+"cabinet de curiosités" of R functions. 
 
-This is a basic example which shows you how to solve a common problem:
+## Bernie's theme
 
-```{r example}
+A `{ggplot2}` theme for Bernie's blog.
+
+```{r berniestheme, message=FALSE}
 library(HohgantR)
-## basic example code
+library(tidyverse)
+# Prepare data
+cty_mpg <- aggregate(mpg$cty, by = list(mpg$manufacturer), FUN = mean)
+colnames(cty_mpg) <- c("make", "mileage") # change column names
+cty_mpg <- cty_mpg[order(cty_mpg$mileage), ] # sort
+cty_mpg$make <- factor(cty_mpg$make, levels = cty_mpg$make)
+# Plot
+ggplot(cty_mpg, aes(x = make, y = mileage)) +
+  geom_segment(aes(
+    x = make,
+    xend = make,
+    y = 0,
+    yend = mileage
+  ), color = "white") +
+  geom_point(size = 3, color = "orange") +
+  labs(
+    title = "Lollipop Chart",
+    subtitle = "Make Vs Avg. Mileage",
+    caption = "source: mpg"
+  ) +
+  HohgantR::themebernie() +
+  theme(axis.text.x = element_text(angle = 65, vjust = 0.6))
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.

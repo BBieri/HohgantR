@@ -4,14 +4,18 @@
 # HohgantR <img src="man/figures/logo.png" align="right" height="138" />
 
 <!-- badges: start -->
+
+[![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com)
+[![](https://img.shields.io/badge/devel%20version-0.0.1-blue.svg)](https://github.com/BBieri/HohgantR)
+[![](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of HohgantR is to serve as a toolbox filled with all the
-miscellaneous functions that might be useful one day.
+miscellaneous functions that might be useful one day, or not…
 
 ## Installation
 
-You can install the development version of HohgantR from
+You can install the latest version of HohgantR from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -19,38 +23,37 @@ You can install the development version of HohgantR from
 devtools::install_github("BBieri/HohgantR")
 ```
 
-## Example
+A release on CRAN is not planned as the package is intended to serve as
+a “cabinet de curiosités” of R functions.
 
-This is a basic example which shows you how to solve a common problem:
+## Bernie’s theme
+
+A `{ggplot2}` theme for Bernie’s blog.
 
 ``` r
 library(HohgantR)
-## basic example code
+library(tidyverse)
+# Prepare data
+cty_mpg <- aggregate(mpg$cty, by = list(mpg$manufacturer), FUN = mean)
+colnames(cty_mpg) <- c("make", "mileage") # change column names
+cty_mpg <- cty_mpg[order(cty_mpg$mileage), ] # sort
+cty_mpg$make <- factor(cty_mpg$make, levels = cty_mpg$make)
+# Plot
+ggplot(cty_mpg, aes(x = make, y = mileage)) +
+  geom_segment(aes(
+    x = make,
+    xend = make,
+    y = 0,
+    yend = mileage
+  ), color = "white") +
+  geom_point(size = 3, color = "orange") +
+  labs(
+    title = "Lollipop Chart",
+    subtitle = "Make Vs Avg. Mileage",
+    caption = "source: mpg"
+  ) +
+  HohgantR::themebernie() +
+  theme(axis.text.x = element_text(angle = 65, vjust = 0.6))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-berniestheme-1.png" width="100%" />
