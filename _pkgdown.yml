@@ -2,9 +2,31 @@ url: https://bbieri.github.io/HohgantR/
 template:
   bootstrap: 5
   bootswatch: simplex
+authors:
+  Bernhard Bieri:
+    href: https://bernhardbieri.ch
+navbar:
+  structure:
+    left: [home, reference, news]
+    right: [search, github]
+  components:
+    reference:
+        text: Reference
+        href: reference/index.html
+    news:
+      text: News
+      href: news/index.html
+    github:
+        icon: "fab fa-github fa-lg"
+        href: https://github.com/bbieri/hohgantr
 reference:
-- title: "Data Visualisation functions"
-  desc: >
-    Ensemble of functions allowing for the faster production of graphs.
-  contents:
-  - themebernie
+  - title: "Data Visualisation functions"
+    desc: >
+      Ensemble of functions allowing for the faster production of graphs.
+    contents:
+     - themebernie
+footer:
+  structure:
+    left: devs
+  components:
+    devs: Developed by [Bernhard Bieri](https://bernhardbieri.ch/).
