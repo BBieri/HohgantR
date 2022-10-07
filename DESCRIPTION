@@ -2,8 +2,9 @@ Package: HohgantR
 Title: Bernhard Bieri's personal package with a set of miscellaneous functions.
 Version: 0.0.1
 Authors@R: 
-    person("Bernhard", "Bieri", , "bernhard.bieri1@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5943-9059"))
+    c(person("Bernhard", "Bieri", , "bernhard.bieri1@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5943-9059")),
+      person("Patricia", "Bieri", , "patricia.bieri@bluewin.ch", role = c("ctb")))
 Description: The package is a personal toolbox of functions that have no place in other packages I have contributed to or developed.
 License: MIT + file LICENSE
 Encoding: UTF-8
