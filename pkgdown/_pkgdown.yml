@@ -25,6 +25,7 @@ reference:
       Ensemble of functions allowing for the faster production of graphs.
     contents:
      - themebernie
+     - thememineral
 footer:
   structure:
     left: devs

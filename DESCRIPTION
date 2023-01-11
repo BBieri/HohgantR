@@ -13,5 +13,6 @@ RoxygenNote: 7.2.1
 Imports: 
     ggplot2,
     hrbrthemes,
+    magrittr,
     testthat
 URL: https://bbieri.github.io/HohgantR/

@@ -20,5 +20,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Bernhard Bieri \email{bernhard.bieri1@gmail.com} (\href{https://orcid.org/0000-0001-5943-9059}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Patricia Bieri \email{patricia.bieri@bluewin.ch} [contributor]
+}
+
 }
 \keyword{internal}
