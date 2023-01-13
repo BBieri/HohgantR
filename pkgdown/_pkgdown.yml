@@ -31,6 +31,11 @@ reference:
     contents:
      - themebernie
      - thememineral
+  - title: "Miscellanea"
+    desc: >
+      Miscellaneous functions and datasets mostly used in examples.
+    contents:
+     - indicators_long
 footer:
   structure:
     left: devs
