@@ -20,9 +20,14 @@ navbar:
         icon: "fab fa-github fa-lg"
         href: https://github.com/bbieri/hohgantr
 reference:
-  - title: "Data Visualisation functions"
+  - title: "ggplot functions"
     desc: >
-      Ensemble of functions allowing for the faster production of graphs.
+      A few custom plotting functions using ggplot.
+    contents:
+     - ggslope
+  - title: "ggplot themes"
+    desc: >
+      Ensemble of functions allowing for the faster styling of ggplot graphs.
     contents:
      - themebernie
      - thememineral
