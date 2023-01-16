@@ -4,11 +4,11 @@
 \name{HohgantR-package}
 \alias{HohgantR}
 \alias{HohgantR-package}
-\title{HohgantR: Bernhard Bieri's personal package with a set of miscellaneous functions.}
+\title{HohgantR: Bernhard Bieri's personal package with a set of miscellaneous functions}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-The package is a personal toolbox of functions that have no place in other packages I have contributed to or developed.
+The package is a personal toolbox of functions that are currently homeless.
 }
 \seealso{
 Useful links:

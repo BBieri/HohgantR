@@ -2,9 +2,9 @@
 % Please edit documentation in R/ggslopegraph.R
 \name{ggslope}
 \alias{ggslope}
-\title{Slope graph}
+\title{Slope graph for ggplot2}
 \source{
-Adapted from
+Adapted and updated from
 \href{https://github.com/leeper/slopegraph}{this great package}.
 }
 \usage{
