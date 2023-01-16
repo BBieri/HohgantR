@@ -9,4 +9,4 @@
 library(testthat)
 library(HohgantR)
 
-test_check("HohgantR")
+testthat::test_check("HohgantR")
