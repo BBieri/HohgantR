@@ -26,6 +26,20 @@ devtools::install_github("BBieri/HohgantR")
 A release on CRAN is not planned as the package is intended to serve as
 a “cabinet de curiosités” of R functions.
 
+## Slope charts à la Tufte
+
+A `{ggplot2}` graphing function inspired by and updated from [this great
+package](https://github.com/leeper/slopegraph).
+
+``` r
+library(HohgantR)
+HohgantR::indicators_long |>
+dplyr::filter(indicator == "Indicator") |> # Filter by indicator if necessary
+ggslope(year, value, DisaggregationLevel)  # Plot things
+```
+
+<img src="man/figures/README-ggslopeexample-1.png" width="100%" />
+
 ## Bernie’s theme
 
 A `{ggplot2}` theme for Bernie’s blog.
@@ -33,6 +47,10 @@ A `{ggplot2}` theme for Bernie’s blog.
 ``` r
 library(HohgantR)
 library(tidyverse)
+#> Warning: package 'tidyverse' was built under R version 4.2.2
+#> Warning: package 'ggplot2' was built under R version 4.2.2
+#> Warning: package 'readr' was built under R version 4.2.2
+#> Warning: package 'stringr' was built under R version 4.2.2
 # Prepare data
 cty_mpg <- aggregate(mpg$cty, by = list(mpg$manufacturer), FUN = mean)
 colnames(cty_mpg) <- c("make", "mileage") # change column names
@@ -57,3 +75,35 @@ ggplot(cty_mpg, aes(x = make, y = mileage)) +
 ```
 
 <img src="man/figures/README-berniestheme-1.png" width="100%" />
+
+## Mineral theme
+
+A `{ggplot2}` theme inspired by minerals.
+
+``` r
+library(HohgantR)
+library(tidyverse)
+# Prepare data
+cty_mpg <- aggregate(mpg$cty, by = list(mpg$manufacturer), FUN = mean)
+colnames(cty_mpg) <- c("make", "mileage") # change column names
+cty_mpg <- cty_mpg[order(cty_mpg$mileage), ] # sort
+cty_mpg$make <- factor(cty_mpg$make, levels = cty_mpg$make)
+# Plot
+ggplot(cty_mpg, aes(x = make, y = mileage)) +
+  geom_segment(aes(
+    x = make,
+    xend = make,
+    y = 0,
+    yend = mileage
+  ), color = "white") +
+  geom_point(size = 3, color = "#C3CED6") +
+  labs(
+    title = "Lollipop Chart",
+    subtitle = "Make Vs Avg. Mileage",
+    caption = "source: mpg"
+  ) +
+  HohgantR::thememineral() +
+  theme(axis.text.x = element_text(angle = 65, vjust = 0.6))
+```
+
+<img src="man/figures/README-mineraltheme-1.png" width="100%" />
