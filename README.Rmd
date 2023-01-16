@@ -44,7 +44,7 @@ A release on CRAN is not planned as the package is intended to serve as a
 A `{ggplot2}` graphing function inspired by and updated from
 [this great package](https://github.com/leeper/slopegraph).
 
-```{r ggslopeexample}
+```{r ggslopeexample, dpi = 300}
 library(HohgantR)
 HohgantR::indicators_long |>
 dplyr::filter(indicator == "Indicator") |> # Filter by indicator if necessary
@@ -55,7 +55,7 @@ ggslope(year, value, DisaggregationLevel)  # Plot things
 
 A `{ggplot2}` theme for Bernie's blog.
 
-```{r berniestheme, message=FALSE}
+```{r berniestheme, message=FALSE, dpi = 300}
 library(HohgantR)
 library(tidyverse)
 # Prepare data
@@ -86,7 +86,7 @@ ggplot(cty_mpg, aes(x = make, y = mileage)) +
 
 A `{ggplot2}` theme inspired by minerals.
 
-```{r mineraltheme, message=FALSE}
+```{r mineraltheme, message=FALSE, dpi = 300}
 library(HohgantR)
 library(tidyverse)
 # Prepare data

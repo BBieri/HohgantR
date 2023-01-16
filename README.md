@@ -48,6 +48,8 @@ A `{ggplot2}` theme for Bernie’s blog.
 library(HohgantR)
 library(tidyverse)
 #> Warning: package 'tidyverse' was built under R version 4.2.2
+#> Warning in Sys.timezone(): unable to identify current timezone 'C':
+#> please set environment variable 'TZ'
 #> Warning: package 'ggplot2' was built under R version 4.2.2
 #> Warning: package 'readr' was built under R version 4.2.2
 #> Warning: package 'stringr' was built under R version 4.2.2
