@@ -27,7 +27,9 @@
 #'  }
 
 themebernie <- function(){
-  hrbrthemes::theme_modern_rc() +
+  hrbrthemes::theme_modern_rc(base_family = "sans",
+                              subtitle_family = "sans",
+                              caption_family = "sans") +
     ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#222831",
                                                             color = NA),
                    plot.background = ggplot2::element_rect(fill = "#222831",
@@ -64,7 +66,9 @@ themebernie <- function(){
 #'  }
 
 thememineral <- function(){
-  hrbrthemes::theme_modern_rc() +
+  hrbrthemes::theme_modern_rc(base_family = "sans",
+                              subtitle_family = "sans",
+                              caption_family = "sans") +
     ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#36454f",
                                                             color = NA),
                    plot.background = ggplot2::element_rect(fill = "#36454f",
