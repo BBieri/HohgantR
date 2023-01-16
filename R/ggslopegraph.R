@@ -1,4 +1,4 @@
-#' Slope graph
+#' Slope graph for ggplot2
 #'
 #' Creates a slope graph ideal to use when computing changes in one or more
 #' indicators between waves of a survey or other time series data with
@@ -26,7 +26,7 @@
 #' @param ReverseXAxis Revert X axis? False by default.
 #' @param RemoveMissing Remove missing values? True by default.
 #'
-#' @source Adapted from
+#' @source Adapted and updated from
 #' [this great package](https://github.com/leeper/slopegraph).
 #' @return A pretty slope graph.
 #' @export
@@ -59,12 +59,15 @@ ggslope <- function(data,
 
   # ---------------- input checking ----------------------------
 
+  # Init .data to avoid note
+  .data <- NULL
+
   # error checking and setup
     if (length(match.call()) <= 4) {
       stop("Not enough arguments passed requires a data, plus at least three variables")
     }
     argList <- as.list(match.call()[-1])
-    if (!hasArg(data)) {
+    if (!methods::hasArg(data)) {
       stop("You didn't specify a data to use", call. = FALSE)
     }
 
@@ -80,7 +83,7 @@ ggslope <- function(data,
     }
 
   Ndata <- argList$data # name of data
-  if (!is(data, "data.frame")) {
+  if (!methods::is(data, "data.frame")) {
     stop(paste0("'", Ndata, "' does not appear to be a |> frame"))
   }
   if (!Nx %in% names(data)) {
@@ -136,10 +139,10 @@ ggslope <- function(data,
     }
   }
 
-  x <- enquo(x)
-  y <- enquo(y)
-  group <- enquo(group)
-  DataLabel <- enquo(DataLabel)
+  x <- dplyr::enquo(x)
+  y <- dplyr::enquo(y)
+  group <- dplyr::enquo(group)
+  DataLabel <- dplyr::enquo(DataLabel)
 
   # Handle edge cases
 
@@ -150,11 +153,11 @@ ggslope <- function(data,
   NumbOfLevels <- nlevels(factor(data[[Nx]]))
   if (WiderLabels) {
     CustomTheme <-
-      c(CustomTheme, expand_limits(x = c(0, NumbOfLevels + 5)))
+      c(CustomTheme, ggplot2::expand_limits(x = c(0, NumbOfLevels + 5)))
   }
 
   if (ReverseYAxis) {
-    CustomTheme <- c(CustomTheme, scale_y_reverse())
+    CustomTheme <- c(CustomTheme, ggplot2::scale_y_reverse())
   }
 
   if (length(LineColor) > 1) {
@@ -174,15 +177,15 @@ ggslope <- function(data,
         rep(LineColor, length.out = length(unique(data[[Ngroup]])))
     }
     LineGeom <-
-      list(ggplot2::geom_line(aes_(color = group), size = LineThickness),
-           scale_color_manual(values = LineColor))
+      list(ggplot2::geom_line(ggplot2::aes(color = .data[[group]]), size = LineThickness),
+           ggplot2::scale_color_manual(values = data[[LineColor]]))
   } else {
     if (LineColor == "ByGroup") {
       LineGeom <-
-        list(ggplot2::geom_line(aes_(color = group, alpha = 1), size = LineThickness))
+        list(ggplot2::geom_line(ggplot2::aes(color = .data[[group]], alpha = 1), size = LineThickness))
     } else {
       LineGeom <-
-        list(ggplot2::geom_line(aes_(), size = LineThickness, color = LineColor))
+        list(ggplot2::geom_line(ggplot2::aes(), size = LineThickness, color = LineColor))
     }
   }
 
@@ -192,18 +195,18 @@ ggslope <- function(data,
     if (RemoveMissing) {
       # which way should we handle them
       data <- data |>
-        group_by(!!group) |>
-        filter(!anyNA(!!y)) |>
+        dplyr::group_by(!!group) |>
+        dplyr::filter(!anyNA(!!y)) |>
         droplevels()
     } else {
       data <- data |>
-        filter(!is.na(!!y))
+        dplyr::filter(!is.na(!!y))
     }
   }
 
   # The actual graph
   data |>
-    ggplot(ggplot2::aes(group = .data[[group]], y = .data[[y]], x = .data[[x]])) +
+    ggplot2::ggplot(ggplot2::aes(group = .data[[group]], y = .data[[y]], x = .data[[x]])) +
     LineGeom +
     # left side y axis labels
     ggrepel::geom_text_repel(
@@ -240,7 +243,7 @@ ggslope <- function(data,
     # data point labels
     ggplot2::geom_label(ggplot2::aes(label = .data[[NDataLabel]]),
                size = DataTextSize,
-               label.padding = unit(DataLabelPadding, "lines"),
+               label.padding = ggplot2::unit(DataLabelPadding, "lines"),
                label.size = DataLabelLineSize,
                color = DataTextColor,
                fill = DataLabelFillColor
