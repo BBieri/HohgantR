@@ -1,19 +1,25 @@
 Package: HohgantR
-Title: Bernhard Bieri's personal package with a set of miscellaneous functions.
+Title: Bernhard Bieri's personal package with a set of miscellaneous functions
 Version: 0.0.1
 Authors@R: 
     c(person("Bernhard", "Bieri", , "bernhard.bieri1@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5943-9059")),
       person("Patricia", "Bieri", , "patricia.bieri@bluewin.ch", role = c("ctb")))
-Description: The package is a personal toolbox of functions that have no place in other packages I have contributed to or developed.
+Description: The package is a personal toolbox of functions that are currently homeless.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 LazyData: true
-Imports: 
+Imports:
+    methods,
     ggplot2,
+    dplyr,
     hrbrthemes,
-    magrittr,
-    testthat
+    forcats,
+    ggrepel,
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3
 URL: https://bbieri.github.io/HohgantR/
+
+
