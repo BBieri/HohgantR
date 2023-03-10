@@ -82,6 +82,6 @@ a low number of periods.
 \examples{
 HohgantR::indicators_long |>
 dplyr::filter(indicator == "Indicator") |>
-ggslope(year, value, DisaggregationLevel)
+ggslope(year, value, unit)
 
 }
