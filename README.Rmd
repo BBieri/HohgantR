@@ -48,7 +48,7 @@ A `{ggplot2}` graphing function inspired by and updated from
 library(HohgantR)
 HohgantR::indicators_long |>
 dplyr::filter(indicator == "Indicator") |> # Filter by indicator if necessary
-ggslope(year, value, DisaggregationLevel)  # Plot things
+ggslope(year, value, unit)  # Plot things
 ```
 
 ## Bernie's theme

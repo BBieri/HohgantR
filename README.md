@@ -35,7 +35,7 @@ package](https://github.com/leeper/slopegraph).
 library(HohgantR)
 HohgantR::indicators_long |>
 dplyr::filter(indicator == "Indicator") |> # Filter by indicator if necessary
-ggslope(year, value, DisaggregationLevel)  # Plot things
+ggslope(year, value, unit)  # Plot things
 ```
 
 <img src="man/figures/README-ggslopeexample-1.png" width="100%" />
@@ -47,12 +47,8 @@ A `{ggplot2}` theme for Bernie’s blog.
 ``` r
 library(HohgantR)
 library(tidyverse)
-#> Warning: package 'tidyverse' was built under R version 4.2.2
 #> Warning in Sys.timezone(): unable to identify current timezone 'C':
 #> please set environment variable 'TZ'
-#> Warning: package 'ggplot2' was built under R version 4.2.2
-#> Warning: package 'readr' was built under R version 4.2.2
-#> Warning: package 'stringr' was built under R version 4.2.2
 # Prepare data
 cty_mpg <- aggregate(mpg$cty, by = list(mpg$manufacturer), FUN = mean)
 colnames(cty_mpg) <- c("make", "mileage") # change column names
