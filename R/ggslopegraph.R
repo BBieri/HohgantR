@@ -34,7 +34,7 @@
 #' @examples
 #' HohgantR::indicators_long |>
 #' dplyr::filter(indicator == "Indicator") |>
-#' ggslope(year, value, DisaggregationLevel)
+#' ggslope(year, value, unit)
 #'
 
 ggslope <- function(data,
@@ -206,11 +206,13 @@ ggslope <- function(data,
 
   # The actual graph
   data |>
-    ggplot2::ggplot(ggplot2::aes(group = .data[[group]], y = .data[[y]], x = .data[[x]])) +
+    ggplot2::ggplot(ggplot2::aes(group = .data[[group]],
+                                 x = .data[[x]],
+                                 y = .data[[y]])) +
     LineGeom +
     # left side y axis labels
     ggrepel::geom_text_repel(
-      data = dplyr::slice_max(data, eval(x), n = 1),
+      data = dplyr::slice_min(data, eval(x), n = 1),
       ggplot2::aes(label = .data[[group]]),
       hjust = "left",
       box.padding = 0.10,
@@ -219,14 +221,14 @@ ggslope <- function(data,
       segment.alpha = 0.6,
       fontface = "bold",
       size = 3,
-      nudge_x = -1.95,
+      nudge_x = -0.5,
       direction = "y",
       force = 1.5,
       max.iter = 3000
     ) +
     # right side y axis labels
     ggrepel::geom_text_repel(
-      data = dplyr::slice_min(data, eval(x), n = 1),
+      data = dplyr::slice_max(data, eval(x), n = 1),
       ggplot2::aes(label = .data[[group]]),
       hjust = "right",
       box.padding = 0.10,
@@ -235,7 +237,7 @@ ggslope <- function(data,
       segment.alpha = 0.6,
       fontface = "bold",
       size = 3,
-      nudge_x = 1.95,
+      nudge_x = 0.5,
       direction = "y",
       force = 1.5,
       max.iter = 3000
